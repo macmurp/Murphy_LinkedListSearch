@@ -10,7 +10,8 @@ namespace Murphy_LinkedListSearch
     {
         public Node head;
         public Node tail;
-        public int count = 0;
+        public int countfemale = 0;
+        public int countmale = 0;
 
         public Node Add(MetaData inputdata)
         {
@@ -19,7 +20,7 @@ namespace Murphy_LinkedListSearch
             {
                 head = new Node(inputdata);
                 tail = head;
-                count++;
+                Count(inputdata);
                 return head;
             }
 
@@ -36,7 +37,7 @@ namespace Murphy_LinkedListSearch
                     tail.Next = new Node(inputdata);
                     tail.Next.Previous = tail;
                     tail = tail.Next;
-                    count++;
+                    Count(inputdata);
                     return tail;
                 }
 
@@ -46,8 +47,29 @@ namespace Murphy_LinkedListSearch
                     Node temp = new Node(inputdata);
                     temp.Next = head;
                     head = temp;
-                    count++;
+                    Count(inputdata);
                     return temp;
+                }
+
+                if ((current.data.name == inputdata.name) && (current.data.gender == inputdata.gender))
+                {
+                    //prompt to add a _1 if a duplicate in name (and gender)
+                    Console.WriteLine("Duplicate found for " + inputdata.name + ". Add anyway? Yes/no");
+                    if (Console.ReadLine() == "yes")
+                    {
+                        inputdata.name = inputdata.name + "_1";
+                        current.Next = new Node(inputdata);
+                        current.Next.Previous = current;
+                        current.Next.Next = nextnode;
+                        nextnode.Previous = current.Next;
+                        Count(inputdata);
+                        return current.Next;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Duplicate discarded");
+                        return null;
+                    }
                 }
 
                 //insert in middle
@@ -57,7 +79,7 @@ namespace Murphy_LinkedListSearch
                     current.Next.Previous = current;
                     current.Next.Next = nextnode;
                     nextnode.Previous = current.Next;
-                    count++;
+                    Count(inputdata);
                     return current.Next;
                 }
 
@@ -66,6 +88,32 @@ namespace Murphy_LinkedListSearch
             }
             return null;
 
+        }
+
+        public void Count(MetaData inputdata)
+        {
+            if (inputdata.gender == 'M')
+            {
+                countmale++;
+            }
+            else
+            {
+                countfemale++;
+            }
+
+        }
+        public int PrintCount()
+        {
+            int count = countfemale + countmale;
+            return count;
+        }
+        public int PrintCountMale()
+        {
+            return countmale;
+        }
+        public int PrintCountFemale()
+        {
+            return countfemale;
         }
     }
 }
