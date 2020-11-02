@@ -12,11 +12,11 @@ namespace Murphy_LinkedListSearch
     {
         static void Main(string[] args)
         {
-
-            var path = "yob2019.txt";
+            var folder = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            var filepath = Path.Combine(folder, @"yob2019.txt");
             LinkedList list = new LinkedList();
 
-            string[] lines = File.ReadAllLines(path, Encoding.UTF8);
+            string[] lines = File.ReadAllLines(filepath);
             foreach (string line in lines)
             {
                 string[] lineitems = line.Split(',');
