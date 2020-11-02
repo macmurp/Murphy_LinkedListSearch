@@ -46,7 +46,7 @@ namespace Murphy_LinkedListSearch
                         }
                         else
                         {
-                            Console.WriteLine(searched.data.name + " is in the list\n");
+                            Console.WriteLine(searched.Data.name + " is in the list\n");
                         }
                         break;
                     case 2:
@@ -81,12 +81,12 @@ namespace Murphy_LinkedListSearch
                         break;
                     case 5:
                         Node popular = list.Popular();
-                        string output = "The most popular name is " + popular.data.name + ", a ";
-                        if (popular.data.gender == 'M')
+                        string output = "The most popular name is " + popular.Data.name + ", a ";
+                        if (popular.Data.gender == 'M')
                             output += "male name";
                         else
                             output += "female name";
-                        output += " at rank " + popular.data.rank + "\n";
+                        output += " at rank " + popular.Data.rank + "\n";
                         Console.WriteLine(output);
                         break;
                     case 6:

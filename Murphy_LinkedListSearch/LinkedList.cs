@@ -10,10 +10,10 @@ namespace Murphy_LinkedListSearch
 {
     class LinkedList
     {
-        public Node head;
-        public Node tail;
-        public int countfemale = 0;
-        public int countmale = 0;
+        protected Node head;
+        protected Node tail;
+        protected int countfemale = 0;
+        protected int countmale = 0;
 
        
         public Node Search(string name)
@@ -23,7 +23,7 @@ namespace Murphy_LinkedListSearch
             {
                 return null;
             }
-            if(head.data.name == name)
+            if(head.Data.name == name)
             {
                 return head;
             }
@@ -38,7 +38,7 @@ namespace Murphy_LinkedListSearch
 
             Node middle = slowpointer;
 
-            if (middle.data.name.ToLower().CompareTo(name.ToLower()) >= 0)
+            if (middle.Data.name.ToLower().CompareTo(name.ToLower()) >= 0)
             {
                 return LinearSearch(name, head, middle);
             }
@@ -55,7 +55,7 @@ namespace Murphy_LinkedListSearch
 
             while (current != end.Next)
             {
-                if (current.data.name.ToLower().CompareTo(name.ToLower()) == 0)
+                if (current.Data.name.ToLower().CompareTo(name.ToLower()) == 0)
                 {
                     return current;
                 }
@@ -80,7 +80,7 @@ namespace Murphy_LinkedListSearch
 
             while (current != null)
             {
-                if(current.data.rank > maxrank.data.rank)
+                if(current.Data.rank > maxrank.Data.rank)
                 {
                     maxrank = current;
                 }
@@ -113,7 +113,7 @@ namespace Murphy_LinkedListSearch
             Node middle = slowpointer;
 
             
-            if (middle.data.name.ToLower().CompareTo(inputdata.name.ToLower()) >= 0)
+            if (middle.Data.name.ToLower().CompareTo(inputdata.name.ToLower()) >= 0)
             {
                 return LinearAdd(inputdata, head, middle);
             }
@@ -139,7 +139,7 @@ namespace Murphy_LinkedListSearch
                     Count(inputdata);
                     return tail;
                 }
-                if (head.data.name.CompareTo(inputdata.name) > 0)
+                if (head.Data.name.CompareTo(inputdata.name) > 0)
                 {
                     Node temp = new Node(inputdata);
                     temp.Next = head;
@@ -147,7 +147,7 @@ namespace Murphy_LinkedListSearch
                     Count(inputdata);
                     return temp;
                 }
-                if ((current.data.name == inputdata.name) && (current.data.gender == inputdata.gender))
+                if ((current.Data.name == inputdata.name) && (current.Data.gender == inputdata.gender))
                 {
                     Console.WriteLine("Duplicate found for " + inputdata.name + ". Add anyway? Yes/no");
                     if (Console.ReadLine() == "yes")
@@ -167,7 +167,7 @@ namespace Murphy_LinkedListSearch
                     }
                 }
 
-                if (current.data.name.CompareTo(inputdata.name) < 0 && nextnode.data.name.CompareTo(inputdata.name) >= 0)
+                if (current.Data.name.CompareTo(inputdata.name) < 0 && nextnode.Data.name.CompareTo(inputdata.name) >= 0)
                 {
                     current.Next = new Node(inputdata);
                     current.Next.Previous = current;

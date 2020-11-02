@@ -8,14 +8,17 @@ namespace Murphy_LinkedListSearch
 {
     class Node
     {
-        public Node Previous;
-        public Node Next;
-        public MetaData data;
+        protected Node _Previous;
+        protected Node _Next;
+        protected MetaData _Data;
+        public Node Previous { get { return _Previous; } set { _Previous = value; } }
+        public Node Next { get { return _Next; } set { _Next = value; } }
+        public MetaData Data { get { return _Data; } set { _Data = value; } }
 
         public Node (MetaData m)
         {
            
-            data = m;
+            Data = m;
             Next = null;
             Previous = null;
         }
