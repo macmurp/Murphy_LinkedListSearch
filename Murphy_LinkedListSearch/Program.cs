@@ -15,11 +15,6 @@ namespace Murphy_LinkedListSearch
 
             var path = "yob2019.txt";
             LinkedList list = new LinkedList();
-            //list.Add( new MetaData("Lucy", 'F', 42));
-            //list.Add(new MetaData("Liam", 'M', 550));
-            //list.Add(new MetaData("Zoey", 'F', 45));
-            //list.Add(new MetaData("Ana", 'F', 430));
-            //list.Add(new MetaData("Canyon", 'F', 41));
 
             string[] lines = File.ReadAllLines(path, Encoding.UTF8);
             foreach (string line in lines)

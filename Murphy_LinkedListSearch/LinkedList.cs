@@ -21,7 +21,6 @@ namespace Murphy_LinkedListSearch
 
             if (head == null)
             {
-                //if search is outside scope of list
                 return null;
             }
             if(head.data.name == name)
@@ -33,7 +32,6 @@ namespace Murphy_LinkedListSearch
             Node slowpointer = head;
             while ((fastpointer.Next != null) && (fastpointer.Next.Next != null))
             {
-                //to find middle of list quickly
                 fastpointer = fastpointer.Next.Next;
                 slowpointer = slowpointer.Next;
             }
@@ -42,15 +40,12 @@ namespace Murphy_LinkedListSearch
 
             if (middle.data.name.ToLower().CompareTo(name.ToLower()) >= 0)
             {
-                //if it is between the head and middle (first half)
                 return LinearSearch(name, head, middle);
             }
             else
             {
-                //if it is between the middle and tail (second half)
                 return LinearSearch(name, middle, tail);
             }
-            //repetitive code, could be more efficient
         }
 
 
@@ -78,7 +73,6 @@ namespace Murphy_LinkedListSearch
 
             if (head == null)
             {
-                //empty list
                 return null;
             }
             Node maxrank, current;
@@ -88,8 +82,6 @@ namespace Murphy_LinkedListSearch
             {
                 if(current.data.rank > maxrank.data.rank)
                 {
-                    //set temporary maxrank node to current whenever current is bigger while looping
-                    //since the list is sorted by name and not rank, I can't use the previous weighted search
                     maxrank = current;
                 }
                 current = current.Next;
@@ -114,7 +106,6 @@ namespace Murphy_LinkedListSearch
             Node slowpointer = head;
             while ((fastpointer.Next != null) && (fastpointer.Next.Next != null))
             {
-                //to find middle of list quickly
                 fastpointer = fastpointer.Next.Next;
                 slowpointer = slowpointer.Next;
             }
@@ -124,12 +115,10 @@ namespace Murphy_LinkedListSearch
             
             if (middle.data.name.ToLower().CompareTo(inputdata.name.ToLower()) >= 0)
             {
-                //if it is between the head and middle (first half)
                 return LinearAdd(inputdata, head, middle);
             }
             else
             {
-                //if it is between the middle and tail (second half)
                 return LinearAdd(inputdata, middle, tail);
             }
         }
@@ -144,7 +133,6 @@ namespace Murphy_LinkedListSearch
                 Node nextnode = current.Next;
                 if (nextnode == null)
                 {
-                    //handle null tail
                     tail.Next = new Node(inputdata);
                     tail.Next.Previous = tail;
                     tail = tail.Next;
@@ -161,9 +149,7 @@ namespace Murphy_LinkedListSearch
                 }
                 if ((current.data.name == inputdata.name) && (current.data.gender == inputdata.gender))
                 {
-                    //prompt to add a _1 if a duplicate in name (and gender)
                     Console.WriteLine("Duplicate found for " + inputdata.name + ". Add anyway? Yes/no");
-                    //should put console.writelines in main
                     if (Console.ReadLine() == "yes")
                     {
                         inputdata.name = inputdata.name + "_1";
@@ -181,7 +167,6 @@ namespace Murphy_LinkedListSearch
                     }
                 }
 
-                //insert in middle
                 if (current.data.name.CompareTo(inputdata.name) < 0 && nextnode.data.name.CompareTo(inputdata.name) >= 0)
                 {
                     current.Next = new Node(inputdata);

@@ -14,7 +14,7 @@ namespace Murphy_LinkedListSearch
 
         public Node (MetaData m)
         {
-            //metadata holds all the info, node is a container for metadata and holds pointers for the list
+           
             data = m;
             Next = null;
             Previous = null;
