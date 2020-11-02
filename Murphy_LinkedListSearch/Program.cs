@@ -15,6 +15,11 @@ namespace Murphy_LinkedListSearch
 
             var path = "yob2019.txt";
             LinkedList list = new LinkedList();
+            //list.Add( new MetaData("Lucy", 'F', 42));
+            //list.Add(new MetaData("Liam", 'M', 550));
+            //list.Add(new MetaData("Zoey", 'F', 45));
+            //list.Add(new MetaData("Ana", 'F', 430));
+            //list.Add(new MetaData("Canyon", 'F', 41));
 
             string[] lines = File.ReadAllLines(path, Encoding.UTF8);
             foreach (string line in lines)
@@ -24,10 +29,6 @@ namespace Murphy_LinkedListSearch
                 list.Add(metadata);
 
             }
-            //Console.WriteLine(list.head.data.name);
-            //Console.WriteLine(list.tail.data.name);
-            //Console.WriteLine("done");
-            //Console.ReadLine();
 
             bool menu = true;
             while (menu)
@@ -37,17 +38,27 @@ namespace Murphy_LinkedListSearch
                 Console.WriteLine("2. Add a name");
                 Console.WriteLine("3. See total list count");
                 Console.WriteLine("4. See list count by gender");
-                Console.WriteLine("5. Quit\n");
-                switch(Convert.ToInt32(Console.ReadLine()))
+                Console.WriteLine("5. Find most popular name");
+                Console.WriteLine("6. Quit\n");
+                switch (Convert.ToInt32(Console.ReadLine()))
                 {
                     case 1:
-                        // add search here
+                        Console.WriteLine("Enter a name to search:");
+                        Node searched = list.Search(Console.ReadLine());
+                        if (searched == null)
+                        {
+                            Console.WriteLine("There is no such name in the list\n");
+                        }
+                        else
+                        {
+                            Console.WriteLine(searched.data.name + " is in the list\n");
+                        }
                         break;
                     case 2:
                         Console.WriteLine("Enter a name to add:");
                         string n = Console.ReadLine();
-                        Console.WriteLine("Enter their gender:");
-                        char g = Console.ReadLine().ToCharArray()[0];
+                        Console.WriteLine("Enter their gender (M/F):");
+                        char g = Console.ReadLine().ToUpper().ToCharArray()[0];
                         Console.WriteLine("Enter their rank:");
                         int r = Convert.ToInt32(Console.ReadLine());
                         MetaData metadata = new MetaData(n, g, r);
@@ -59,7 +70,7 @@ namespace Murphy_LinkedListSearch
                         Console.WriteLine("Total count of names in list: " + count + "\n");
                         break;
                     case 4:
-                        Console.WriteLine("Print a count of men or women? Enter M/W");
+                        Console.WriteLine("Print a count of men or women? Enter M/F");
                         string input = Console.ReadLine().ToUpper();
                         int countg;
                         if (input == "M")
@@ -74,23 +85,20 @@ namespace Murphy_LinkedListSearch
                         }
                         break;
                     case 5:
+                        Node popular = list.Popular();
+                        string output = "The most popular name is " + popular.data.name + ", a ";
+                        if (popular.data.gender == 'M')
+                            output += "male name";
+                        else
+                            output += "female name";
+                        output += " at rank " + popular.data.rank + "\n";
+                        Console.WriteLine(output);
+                        break;
+                    case 6:
                         menu = false;
                         break;
                 }
             }
-
-
-            //TO DO:
-
-            //Search by name WEIGHTED (case insensitive)
-
-            //xx Add item (require name, gender, and rank) WEIGHTED (case insensitive?) and if duplicate name prompt to add a _1 or cancel
-
-            //xx See current count of all list items
-
-            //xx See current count of list items based on gender, one for male and one for female
-
-            //MENU FOR OPTIONS
         }
     }
 }
